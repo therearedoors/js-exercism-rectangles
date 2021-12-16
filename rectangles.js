@@ -30,7 +30,7 @@ export function count(input) {
     if (coordStr.includes(`${coordArr[i][0]},${coordArr[j][1]}`)&&coordStr.includes(`${coordArr[j][0]},${coordArr[i][1]}`)){ // Checks for other two corners.
     botLeft = [coordArr[i][0],coordArr[j][1]]; // At this point in the loop, need to define the other corners for purposes of checking all the sides.
     topRight = [coordArr[j][0],coordArr[i][1]];
-    const checkAcross = (left,right) => { // Function to check along x-axis, top and bottom. Returns true/false.
+    const checkAcross = (left,right) => { // Function to check every string character between coord corner points across the x-axis. Returns true/false.
       let check = true
         for (let k=left[0]+1;k<right[0];k++){
         if (strArr[left[1]].charAt(k) === '-' ||
@@ -38,9 +38,9 @@ export function count(input) {
           else {check = false}
        } return check
     }
-    if (checkAcross(coordArr[i],topRight) && 
-    checkAcross(botLeft,coordArr[j])){
-    const checkDown = (top,bottom) => {  //Function checks y-axis, left and right, returns true/false.
+    if (checkAcross(coordArr[i],topRight) &&   // Checks betwen top left and top right.
+    checkAcross(botLeft,coordArr[j])){ // Checks between bottom left and bottom right.
+    const checkDown = (top,bottom) => {  //Function checks every string character between coord corner points down the y-axis, , returns true/false.
       let check = true
         for (let l=top[1]+1;l<bottom[1];l++){
         if (strArr[l].charAt(top[0]) === '|' ||
@@ -48,9 +48,9 @@ export function count(input) {
         else {check=false}
         } return check
         }
-        if (checkDown(coordArr[i],botLeft) &&   // Passing all these tests we can add to rectangle count.
-          checkDown(topRight,coordArr[j])) {
-            rectangleCount++}}
+        if (checkDown(coordArr[i],botLeft) &&  // Checks between top left and bottom left.
+          checkDown(topRight,coordArr[j])) { // Checks between top right and bottom right.
+            rectangleCount++}}   // Passing all these tests we can add to rectangle count.
     }
     }
     }
