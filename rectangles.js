@@ -25,8 +25,8 @@ export function count(input) {
 // The basic idea is that if you can find a bottom right corner 'j' (e.g. [4,2]) from a top left corner 'i'(e.g [0,0]), you can check for 
 // a rectangle by checking for the presence of other corners (e.g.[4,0] and [0,2]) in the array. I did it here by check the coords in a string,
 // was struggling to do check using the coord array.       
-    if (coordArr[i][0] >= coordArr[j][0]){continue;} // Checks for possibility of bottom right corner along x-axis.
-    if (coordArr[i][1] >= coordArr[j][1]){continue;} // Checks for possibility of bottom right corner along y-axix.
+    if (coordArr[i][0] >= coordArr[j][0]){continue;} // Checks for possibility of top right corner along x-axis.
+    if (coordArr[i][1] >= coordArr[j][1]){continue;} // Checks for possibility of bottom left corner along y-axix.
     if (coordStr.includes(`${coordArr[i][0]},${coordArr[j][1]}`)&&coordStr.includes(`${coordArr[j][0]},${coordArr[i][1]}`)){ // Checks for other two corners.
     botLeft = [coordArr[i][0],coordArr[j][1]]; // At this point in the loop, need to define the other corners for purposes of checking all the sides.
     topRight = [coordArr[j][0],coordArr[i][1]];
